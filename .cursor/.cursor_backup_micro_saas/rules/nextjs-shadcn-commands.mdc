@@ -1,0 +1,47 @@
+---
+alwaysApply: false
+description: Quick commands to generate a Next.js app and add shadcn/ui
+---
+
+## Next.js + shadcn/ui Commands Cheat Sheet
+
+Follow these commands to create a new Next.js app and add shadcn/ui components. See full guide in `nextjs-shadcn-setup.mdc` or official docs: `https://ui.shadcn.com/docs/installation/next`.
+
+### Create app (non-interactive, recommended)
+```bash
+pnpm create next-app@latest my-app \
+  --ts \
+  --tailwind \
+  --eslint \
+  --app \
+  --use-pnpm \
+  --no-git \
+  --import-alias "@/*"
+```
+
+### Enter project
+```bash
+cd my-app
+```
+
+### Initialize shadcn/ui
+```bash
+pnpm dlx shadcn@latest init
+```
+- Choose "Next.js" (or "Monorepo" if applicable)
+
+### Add components
+```bash
+pnpm dlx shadcn@latest add button
+# or multiple at once
+pnpm dlx shadcn@latest add button input label card
+```
+
+### Run dev server
+```bash
+pnpm dev
+```
+
+### Notes
+- For existing Next.js apps, start from "Initialize shadcn/ui".
+- Re-run `pnpm dlx shadcn@latest add <component>` whenever you need new components.

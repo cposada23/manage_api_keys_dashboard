@@ -1,0 +1,90 @@
+---
+alwaysApply: false
+description: Step-by-step guide to create a new Next.js app and add shadcn/ui
+---
+
+## Next.js + shadcn/ui Setup Guide
+
+This rule explains exactly which commands to run and how to run them to generate a new Next.js app and add shadcn/ui components. It follows the official shadcn/ui Next.js installation guide (`https://ui.shadcn.com/docs/installation/next`).
+
+### Prerequisites
+- **Node.js**: v18+ (or v20+ recommended)
+- **Package manager**: pnpm
+- **OS**: macOS/Linux/Windows
+
+### Create a new Next.js app (recommended flags)
+You can create the app interactively or non-interactively. Non-interactive is ideal for scripts/automation.
+
+- Interactive:
+```bash
+pnpm create next-app@latest my-app
+```
+- Non-interactive (TypeScript, Tailwind, App Router, pnpm):
+```bash
+pnpm create next-app@latest my-app \
+  --ts \
+  --tailwind \
+  --eslint \
+  --app \
+  --use-pnpm \
+  --no-git \
+  --import-alias "@/*"
+```
+
+Then move into the project directory:
+```bash
+cd my-app
+```
+
+Start the dev server to confirm the app runs:
+```bash
+pnpm dev
+```
+
+### Initialize shadcn/ui
+Run the official initializer. Choose "Next.js" when prompted (or the appropriate option for a monorepo).
+```bash
+pnpm dlx shadcn@latest init
+```
+Notes:
+- For single-project repos, select "Next.js".
+- For monorepos, select "Monorepo" and provide the path to your web app if prompted.
+- The initializer will configure Tailwind CSS and generate the `components` and `lib` structure used by shadcn/ui.
+
+### Add shadcn/ui components
+Add components as needed. For example, to add the Button component:
+```bash
+pnpm dlx shadcn@latest add button
+```
+You can add multiple components at once, e.g.:
+```bash
+pnpm dlx shadcn@latest add button input label card
+```
+
+### Use a component
+After adding, import components from `@/components/ui/...`:
+```tsx
+import { Button } from "@/components/ui/button";
+
+export default function Page() {
+  return (
+    <main className="p-6">
+      <Button>Click me</Button>
+    </main>
+  );
+}
+```
+
+### Verify styles (Tailwind)
+If you created the app with `--tailwind`, you are set. If not, install Tailwind per Next.js docs, then re-run the shadcn/ui init.
+
+### Run the app
+```bash
+pnpm dev
+```
+Open the app (usually `http://localhost:3000`) and verify the components render correctly.
+
+### Common tips
+- Keep `pnpm` as the package manager for consistency with these commands.
+- Re-run `pnpm dlx shadcn@latest add <component>` any time you need a new UI primitive.
+- For details and latest options, see the official docs: `https://ui.shadcn.com/docs/installation/next`.
